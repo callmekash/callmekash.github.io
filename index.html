@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Algori AI | AI-Powered Restaurant Management Solutions</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#11395E',secondary:'#FDBC12'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+
+</head>
+<body class="bg-white">
+    <div id="header"></div>
+    <script>
+        fetch('/global/header.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('header').innerHTML = data;
+          })
+          .catch(error => console.error('Error loading header:', error));
+    </script>
+
+<!-- Header Navigation -->
+<!--<header class="w-full bg-white shadow-sm fixed top-0 left-0 right-0 z-50">
+<div class="container mx-auto px-6 py-4 flex items-center justify-between">
+<a href="#" class="flex items-center">
+<img src="/logos/Logo_vertical_Blue.png" alt="Algori Logo" class="h-8">
+</a>
+<nav class="hidden md:flex space-x-8">
+<div class="relative group">
+<a href="#features" class="text-gray-700 hover:text-primary font-medium transition-colors flex items-center">
+Features <i class="ri-arrow-down-s-line ml-1"></i>
+</a>
+<div class="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-lg py-2 hidden group-hover:block z-50">
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary">AlgoriPOS</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary">AlgoriInventory</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary">AlgoriCRM</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary">AlgoriHRM</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary">AlgoriAnalytics</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary">AlgoriTableReservation</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary">AlgoriLeasingManagement</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary">AlgoriAssetManagement</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary">AlgoriAICamera</a>
+<a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-50 hover:text-primary">Algori e-Invoice</a>
+</div>
+</div>
+<a href="#about" class="text-gray-700 hover:text-primary font-medium transition-colors">About</a>
+<a href="#pricing" class="text-gray-700 hover:text-primary font-medium transition-colors">Pricing</a>
+<a href="#contact" class="text-gray-700 hover:text-primary font-medium transition-colors">Contact</a>
+</nav>
+<div class="flex items-center space-x-4">
+<a href="#" class="hidden md:block text-gray-700 hover:text-primary font-medium transition-colors">Login</a>
+<a href="#" class="bg-primary text-white px-5 py-2 !rounded-button font-medium hover:bg-secondary transition-colors whitespace-nowrap">Get Started</a>
+</div>
+<button class="md:hidden w-10 h-10 flex items-center justify-center text-gray-700">
+<i class="ri-menu-line ri-lg"></i>
+</button>
+</div>
+</header> 
+ Hero Section -->
+<section class="hero-section pt-32 pb-20 w-full" style="background-image: url('https://readdy.ai/api/search-image?query=Minimalist%2C%20abstract%20AI%20technology%20illustration%20with%20restaurant%20elements.%20Left%20side%20has%20clean%20white%20space%20for%20text.%20Right%20side%20shows%20subtle%20digital%20patterns%2C%20restaurant%20icons%2C%20and%20AI%20visualization%20in%20deep%20blue%20and%20gold%20accents.%20Modern%2C%20professional%20aesthetic%20with%20plenty%20of%20negative%20space.%20Clean%20transition%20between%20white%20space%20and%20illustration.&width=1920&height=800&seq=1&orientation=landscape');">
+<div class="container mx-auto px-6 w-full">
+<div class="flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 mb-12 md:mb-0">
+<h1 class="text-4xl md:text-5xl font-bold text-primary mb-6 leading-tight">Think bigger with AI-powered restaurant solutions</h1>
+<p class="text-lg text-gray-700 mb-8 max-w-lg">Algori AI is an all-in-one restaurant management suite of products that aims to leverage AI to ease operational burdens.</p>
+<div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+<a href="#" class="bg-primary text-white px-8 py-3 !rounded-button font-medium cta-button text-center whitespace-nowrap">Get Started</a>
+<a href="#" c`lass="border-2 border-primary text-primary px-8 py-3 !rounded-button font-medium cta-button-outline text-center whitespace-nowrap">Book a Demo</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Section -->
+<section id="features" class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Why Choose Algori AI</h2>
+<p class="text-lg text-gray-600 max-w-2xl mx-auto">Our intelligent platform brings cutting-edge AI technology to revolutionize your restaurant operations.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Feature Card 1 -->
+<div class="feature-card bg-white p-8 rounded shadow-md border border-gray-100 transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-6">
+<i class="ri-restaurant-line ri-lg text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-3">Smart Inventory Management</h3>
+<p class="text-gray-600">AI-powered inventory tracking that predicts needs, reduces waste, and optimizes your supply chain automatically.</p>
+</div>
+<!-- Feature Card 2 -->
+<div class="feature-card bg-white p-8 rounded shadow-md border border-gray-100 transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-6">
+<i class="ri-customer-service-2-line ri-lg text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-3">Customer Experience AI</h3>
+<p class="text-gray-600">Enhance guest satisfaction with personalized recommendations, intelligent reservation systems, and feedback analysis.</p>
+</div>
+<!-- Feature Card 3 -->
+<div class="feature-card bg-white p-8 rounded shadow-md border border-gray-100 transition-all">
+<div class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-6">
+<i class="ri-line-chart-line ri-lg text-primary"></i>
+</div>
+<h3 class="text-xl font-semibold text-primary mb-3">Business Analytics</h3>
+<p class="text-gray-600">Gain actionable insights from comprehensive data analysis, helping you make informed decisions to grow your business.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- About Section -->
+<section id="about" class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="flex flex-col md:flex-row items-center">
+<div class="w-full md:w-1/2 mb-12 md:mb-0">
+<img src="https://readdy.ai/api/search-image?query=Professional%20restaurant%20manager%20using%20a%20tablet%20with%20AI%20interface%2C%20showing%20data%20visualization%20and%20restaurant%20analytics.%20Modern%20restaurant%20interior%20in%20background.%20Clean%2C%20minimalist%20style%20with%20blue%20and%20gold%20UI%20elements.%20Professional%20business%20setting%20with%20subtle%20technology%20integration.&width=600&height=500&seq=2&orientation=landscape" alt="Restaurant AI Management" class="rounded-lg shadow-lg w-full object-cover">
+</div>
+<div class="w-full md:w-1/2 md:pl-12">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">About Algori AI</h2>
+<p class="text-gray-600 mb-6">Founded in 2023, Algori AI is dedicated to transforming the restaurant industry through intelligent automation and data-driven insights. We combine expertise in artificial intelligence with deep knowledge of restaurant operations.</p>
+<p class="text-gray-600 mb-6">Our platform helps restaurant owners and managers focus on what matters most: creating exceptional dining experiences while maximizing efficiency and profitability.</p>
+<div class="mb-8">
+<h3 class="text-xl font-semibold text-primary mb-4">Key Benefits</h3>
+<ul class="space-y-3">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Reduce operational costs by up to 25%</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Increase staff productivity and satisfaction</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Enhance guest experiences through personalization</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Make data-driven decisions with real-time analytics</span>
+</li>
+</ul>
+</div>
+<a href="#" class="text-primary font-medium hover:text-secondary transition-colors inline-flex items-center">
+Learn more about our story
+<i class="ri-arrow-right-line ml-2"></i>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- System UI Preview Section -->
+<section class="py-20 bg-white">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Powerful Restaurant Management System</h2>
+<p class="text-lg text-gray-600 max-w-2xl mx-auto">Experience our intuitive and comprehensive restaurant management interface</p>
+</div>
+<div class="relative rounded-xl overflow-hidden shadow-2xl">
+<img src="https://readdy.ai/api/search-image?query=Modern%20restaurant%20management%20dashboard%20UI%20interface%20with%20dark%20mode%20theme.%20Professional%20design%20showing%20analytics%2C%20orders%2C%20and%20inventory%20management.%20Clean%20layout%20with%20charts%2C%20tables%2C%20and%20navigation.%20High-end%20software%20interface%20design.&width=1200&height=800&seq=3&orientation=landscape" alt="Algori System Interface" class="w-full object-cover">
+</div>
+</div>
+</section>
+<!-- Extended Features Section -->
+<section class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Comprehensive Suite of Solutions</h2>
+<p class="text-lg text-gray-600 max-w-2xl mx-auto">Discover our powerful tools designed specifically for restaurant management</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+<!-- AlgoriPOS -->
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+<i class="ri-terminal-box-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-primary mb-2">AlgoriPOS</h3>
+<p class="text-sm text-gray-600">Advanced point-of-sale system with real-time order management</p>
+</div>
+<!-- AlgoriInventory -->
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+<i class="ri-store-2-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-primary mb-2">AlgoriInventory</h3>
+<p class="text-sm text-gray-600">Smart inventory tracking with AI-powered forecasting</p>
+</div>
+<!-- AlgoriCRM -->
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+<i class="ri-user-heart-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-primary mb-2">AlgoriCRM</h3>
+<p class="text-sm text-gray-600">Customer relationship management with loyalty programs</p>
+</div>
+<!-- AlgoriHRM -->
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+<i class="ri-team-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-primary mb-2">AlgoriHRM</h3>
+<p class="text-sm text-gray-600">Complete human resource management solution</p>
+</div>
+<!-- AlgoriAnalytics -->
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+<i class="ri-line-chart-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-primary mb-2">AlgoriAnalytics</h3>
+<p class="text-sm text-gray-600">Comprehensive business intelligence dashboard</p>
+</div>
+<!-- AlgoriTableReservation -->
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+<i class="ri-calendar-check-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-primary mb-2">AlgoriTableReservation</h3>
+<p class="text-sm text-gray-600">Smart table booking and management system</p>
+</div>
+<!-- AlgoriLeasingManagement -->
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+<i class="ri-building-2-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-primary mb-2">AlgoriLeasingManagement</h3>
+<p class="text-sm text-gray-600">Comprehensive lease and tenant management</p>
+</div>
+<!-- AlgoriAssetManagement -->
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+<i class="ri-database-2-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-primary mb-2">AlgoriAssetManagement</h3>
+<p class="text-sm text-gray-600">Track and manage all restaurant assets</p>
+</div>
+<!-- AlgoriAICamera -->
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+<i class="ri-camera-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-primary mb-2">AlgoriAICamera</h3>
+<p class="text-sm text-gray-600">Smart surveillance and analytics system</p>
+</div>
+<!-- Algori e-Invoice -->
+<div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+<div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-lg mb-4">
+<i class="ri-bill-line text-primary text-2xl"></i>
+</div>
+<h3 class="text-lg font-semibold text-primary mb-2">Algori e-Invoice</h3>
+<p class="text-sm text-gray-600">Digital invoicing and payment processing</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section id="pricing" class="py-20 bg-gray-50">
+<div class="container mx-auto px-6">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Simple, Transparent Pricing</h2>
+<p class="text-lg text-gray-600 max-w-2xl mx-auto">Choose the plan that works best for your restaurant's needs and scale as you grow.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Starter Plan -->
+<div class="bg-white p-8 rounded-lg shadow-md border border-gray-100 flex flex-col h-full">
+<div class="mb-6">
+<h3 class="text-xl font-semibold text-primary mb-2">Starter</h3>
+<p class="text-gray-600 mb-4">Perfect for small restaurants and cafes</p>
+<div class="flex items-end mb-4">
+<span class="text-4xl font-bold text-primary">$99</span>
+<span class="text-gray-500 ml-2">/month</span>
+</div>
+</div>
+<ul class="space-y-3 mb-8 flex-grow">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Basic inventory management</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Staff scheduling tools</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Simple analytics dashboard</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Email support</span>
+</li>
+</ul>
+<a href="#" class="bg-primary text-white px-6 py-3 !rounded-button font-medium text-center hover:bg-secondary transition-colors whitespace-nowrap">Get Started</a>
+</div>
+<!-- Professional Plan -->
+<div class="bg-white p-8 rounded-lg shadow-lg border-2 border-secondary flex flex-col h-full relative">
+<div class="absolute top-0 right-0 bg-secondary text-white px-4 py-1 text-sm font-medium !rounded-tr-lg !rounded-bl-lg">Most Popular</div>
+<div class="mb-6">
+<h3 class="text-xl font-semibold text-primary mb-2">Professional</h3>
+<p class="text-gray-600 mb-4">Ideal for established restaurants</p>
+<div class="flex items-end mb-4">
+<span class="text-4xl font-bold text-primary">$249</span>
+<span class="text-gray-500 ml-2">/month</span>
+</div>
+</div>
+<ul class="space-y-3 mb-8 flex-grow">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Advanced inventory management</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">AI-powered demand forecasting</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Customer insights and analytics</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Menu optimization tools</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Priority support</span>
+</li>
+</ul>
+<a href="#" class="bg-secondary text-white px-6 py-3 !rounded-button font-medium text-center hover:bg-primary transition-colors whitespace-nowrap">Get Started</a>
+</div>
+<!-- Enterprise Plan -->
+<div class="bg-white p-8 rounded-lg shadow-md border border-gray-100 flex flex-col h-full">
+<div class="mb-6">
+<h3 class="text-xl font-semibold text-primary mb-2">Enterprise</h3>
+<p class="text-gray-600 mb-4">For restaurant groups and chains</p>
+<div class="flex items-end mb-4">
+<span class="text-4xl font-bold text-primary">$499</span>
+<span class="text-gray-500 ml-2">/month</span>
+</div>
+</div>
+<ul class="space-y-3 mb-8 flex-grow">
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Everything in Professional</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Multi-location management</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Advanced business intelligence</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Custom integrations</span>
+</li>
+<li class="flex items-start">
+<div class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2">
+<i class="ri-check-line"></i>
+</div>
+<span class="text-gray-600">Dedicated account manager</span>
+</li>
+</ul>
+<a href="#" class="bg-primary text-white px-6 py-3 !rounded-button font-medium text-center hover:bg-secondary transition-colors whitespace-nowrap">Contact Sales</a>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-20 bg-white">
+<div class="container mx-auto px-6 text-center">
+<h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">Ready to Revolutionize Your Restaurant?</h2>
+<p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">Join hundreds of successful restaurants already using Algori AI to transform their operations and boost profitability.</p>
+<div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+<a href="#" class="bg-primary text-white px-8 py-3 !rounded-button font-medium cta-button text-center whitespace-nowrap">Get Started</a>
+<a href="#" class="border-2 border-primary text-primary px-8 py-3 !rounded-button font-medium cta-button-outline text-center whitespace-nowrap">Schedule Demo</a>
+</div>
+</div>
+</section>
+
+<!-- Form Section -->
+<body class="bg-white">
+  <div id="form"></div>
+  <script>
+      fetch('/global/form.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('form').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading form:', error));
+  </script>
+<!-- Footer -->
+<body class="bg-white"></body>
+<div id="footer"></div>
+<script>
+  fetch('/global/footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer').innerHTML = data;
+    })
+    .catch(error => console.error('Error loading footer:', error));
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+// Mobile menu toggle
+const menuButton = document.querySelector('.md\\:hidden');
+const mobileMenu = document.querySelector('nav');
+if (menuButton && mobileMenu) {
+menuButton.addEventListener('click', function() {
+mobileMenu.classList.toggle('hidden');
+mobileMenu.classList.toggle('flex');
+mobileMenu.classList.toggle('flex-col');
+mobileMenu.classList.toggle('absolute');
+mobileMenu.classList.toggle('top-16');
+mobileMenu.classList.toggle('left-0');
+mobileMenu.classList.toggle('right-0');
+mobileMenu.classList.toggle('bg-white');
+mobileMenu.classList.toggle('p-4');
+mobileMenu.classList.toggle('shadow-md');
+mobileMenu.classList.toggle('z-50');
+});
+}
+});
+</script>
+</body>
+</html>

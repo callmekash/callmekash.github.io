@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      AlgoriInventory | Smart Restaurant Inventory Management System
+    </title>
+    <script src="https://cdn.tailwindcss.com/3.4.16"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: { primary: "#11395E", secondary: "#FDBC12" },
+            borderRadius: {
+              none: "0px",
+              sm: "4px",
+              DEFAULT: "8px",
+              md: "12px",
+              lg: "16px",
+              xl: "20px",
+              "2xl": "24px",
+              "3xl": "32px",
+              full: "9999px",
+              button: "8px",
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js"></script>
+    <style>
+      :where([class^="ri-"])::before { content: "\f3c2"; }
+      body {
+      font-family: 'Inter', sans-serif;
+      }
+      input[type="number"]::-webkit-inner-spin-button,
+      input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+      }
+      .hero-section {
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      }
+      .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(17, 57, 94, 0.1);
+      transition: all 0.3s ease;
+      }
+      .cta-button:hover {
+      background-color: #FDBC12;
+      transition: all 0.3s ease;
+      }
+      .cta-button-outline:hover {
+      background-color: rgba(17, 57, 94, 0.05);
+      transition: all 0.3s ease;
+      }
+      .footer-link:hover {
+      color: #FDBC12;
+      transition: all 0.3s ease;
+      }
+      .social-icon:hover {
+      color: #FDBC12;
+      transition: all 0.3s ease;
+      }
+      .tab-active {
+      color: #11395E;
+      border-color: #11395E;
+      }
+      .screenshot-thumbnail {
+      opacity: 0.6;
+      transition: all 0.3s ease;
+      }
+      .screenshot-thumbnail.active {
+      opacity: 1;
+      border-color: #FDBC12;
+      }
+      .custom-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #11395E;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      position: relative;
+      }
+      .custom-checkbox:checked {
+      background-color: #11395E;
+      }
+      .custom-checkbox:checked::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 6px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+      }
+    </style>
+  </head>
+  <body class="bg-white">
+    <!-- Header Navigation -->
+  </head>
+  <body class="bg-white">
+      <div id="header"></div>
+      <script>
+          fetch('/global/header.html')
+            .then(response => response.text())
+            .then(data => {
+              document.getElementById('header').innerHTML = data;
+            })
+            .catch(error => console.error('Error loading header:', error));
+      </script>
+    <!-- Breadcrumb -->
+    <div class="bg-gray-50 pt-24 pb-4">
+      <div class="container mx-auto px-6">
+        <div class="flex items-center text-sm text-gray-500">
+          <a href="#" class="hover:text-primary">Home</a>
+          <span class="mx-2">/</span>
+          <a href="#" class="hover:text-primary">Features</a>
+          <span class="mx-2">/</span>
+          <span class="text-primary font-medium">AlgoriInventory</span>
+        </div>
+      </div>
+    </div>
+    <!-- Hero Section -->
+    <section
+      class="hero-section py-16 w-full"
+      style="background-image: url('https://readdy.ai/api/search-image?query=Modern%2520restaurant%2520inventory%2520management%2520system%2520with%2520sleek%2520interface%2520on%2520tablet.%2520Clean%2520minimalist%2520design%2520with%2520blue%2520and%2520gold%2520accents.%2520Restaurant%2520storage%2520room%2520background%2520slightly%2520blurred.%2520Professional%2520high-end%2520look%2520with%2520staff%2520scanning%2520inventory.%2520Left%2520side%2520has%2520clean%2520white%2520space%2520for%2520text.%2520Right%2520side%2520shows%2520the%2520inventory%2520interface%2520with%2520stock%2520levels%2520and%2520product%2520details.&width=1920&height=600&seq=10&orientation=landscape');"
+    >
+      <div class="container mx-auto px-6 w-full">
+        <div class="max-w-2xl">
+          <h1
+            class="text-4xl md:text-5xl font-bold text-primary mb-6 leading-tight"
+          >
+            AlgoriInventory: Smart Restaurant Inventory Management
+          </h1>
+          <p class="text-lg text-gray-700 mb-8">
+            Take control of your restaurant's inventory with our AI-powered
+            system designed to reduce waste, optimize stock levels, and maximize
+            your profitability.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+          >
+            <a
+              href="#demo"
+              class="bg-primary text-white px-8 py-3 !rounded-button font-medium cta-button text-center whitespace-nowrap"
+              >Request Demo</a
+            >
+            <a
+              href="#pricing"
+              class="border-2 border-primary text-primary px-8 py-3 !rounded-button font-medium cta-button-outline text-center whitespace-nowrap"
+              >View Pricing</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Key Features Section -->
+    <section id="features" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Powerful Inventory Management Features
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Our comprehensive inventory solution is designed with
+            restaurant-specific features to streamline every aspect of your
+            stock management.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Feature Card 1 -->
+          <div
+            class="feature-card bg-white p-8 rounded shadow-md border border-gray-100 transition-all"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-6"
+            >
+              <i class="ri-stock-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Real-time Stock Tracking
+            </h3>
+            <p class="text-gray-600">
+              Monitor inventory levels in real-time across multiple locations.
+              Set minimum thresholds and receive alerts when items need to be
+              reordered.
+            </p>
+          </div>
+          <!-- Feature Card 2 -->
+          <div
+            class="feature-card bg-white p-8 rounded shadow-md border border-gray-100 transition-all"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-6"
+            >
+              <i class="ri-user-star-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Supplier Management
+            </h3>
+            <p class="text-gray-600">
+              Maintain detailed supplier profiles, compare prices, track
+              performance, and manage relationships all in one centralized
+              system.
+            </p>
+          </div>
+          <!-- Feature Card 3 -->
+          <div
+            class="feature-card bg-white p-8 rounded shadow-md border border-gray-100 transition-all"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-6"
+            >
+              <i class="ri-alarm-warning-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Automated Reordering
+            </h3>
+            <p class="text-gray-600">
+              Set up automatic purchase orders based on inventory levels, usage
+              patterns, and lead times to ensure you never run out of essential
+              items.
+            </p>
+          </div>
+          <!-- Feature Card 4 -->
+          <div
+            class="feature-card bg-white p-8 rounded shadow-md border border-gray-100 transition-all"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-6"
+            >
+              <i class="ri-line-chart-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Inventory Analytics
+            </h3>
+            <p class="text-gray-600">
+              Gain actionable insights with detailed reports on inventory
+              turnover, waste tracking, cost fluctuations, and seasonal demand
+              patterns.
+            </p>
+          </div>
+          <!-- Feature Card 5 -->
+          <div
+            class="feature-card bg-white p-8 rounded shadow-md border border-gray-100 transition-all"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-6"
+            >
+              <i class="ri-money-dollar-circle-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Cost Control
+            </h3>
+            <p class="text-gray-600">
+              Track food costs, monitor price fluctuations, and identify waste
+              to optimize spending and improve your bottom line.
+            </p>
+          </div>
+          <!-- Feature Card 6 -->
+          <div
+            class="feature-card bg-white p-8 rounded shadow-md border border-gray-100 transition-all"
+          >
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-6"
+            >
+              <i class="ri-restaurant-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Recipe Management
+            </h3>
+            <p class="text-gray-600">
+              Create and manage digital recipes that automatically update
+              inventory levels when dishes are prepared, ensuring accurate stock
+              counts.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Interface Preview Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Intuitive Interface Designed for Restaurants
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Experience our user-friendly inventory interface that minimizes
+            training time and maximizes efficiency.
+          </p>
+        </div>
+        <div class="flex flex-col items-center">
+          <!-- Main Screenshot Display -->
+          <div
+            class="relative w-full max-w-4xl rounded-xl overflow-hidden shadow-2xl mb-8"
+          >
+            <img
+              id="main-screenshot"
+              src="https://readdy.ai/api/search-image?query=Modern%2520restaurant%2520inventory%2520management%2520interface%2520on%2520tablet%2520screen%2520with%2520clean%2520design.%2520Shows%2520product%2520categories%252C%2520stock%2520levels%252C%2520and%2520order%2520status.%2520Blue%2520and%2520white%2520color%2520scheme%2520with%2520gold%2520accents.%2520Professional%2520high-end%2520software%2520interface%2520with%2520clear%2520typography%2520and%2520intuitive%2520layout.%2520Visible%2520inventory%2520metrics%2520and%2520supplier%2520information.&width=1200&height=800&seq=11&orientation=landscape"
+              alt="AlgoriInventory Interface"
+              class="w-full object-cover"
+            />
+            <!-- Feature Annotations -->
+            <div
+              class="absolute top-1/4 left-1/4 w-8 h-8 flex items-center justify-center bg-primary rounded-full cursor-pointer shadow-lg"
+              id="annotation-1"
+            >
+              <span class="text-white font-bold">1</span>
+            </div>
+            <div
+              class="absolute top-1/2 right-1/3 w-8 h-8 flex items-center justify-center bg-primary rounded-full cursor-pointer shadow-lg"
+              id="annotation-2"
+            >
+              <span class="text-white font-bold">2</span>
+            </div>
+            <div
+              class="absolute bottom-1/4 right-1/4 w-8 h-8 flex items-center justify-center bg-primary rounded-full cursor-pointer shadow-lg"
+              id="annotation-3"
+            >
+              <span class="text-white font-bold">3</span>
+            </div>
+          </div>
+          <!-- Thumbnails -->
+          <div class="flex space-x-4 mb-8">
+            <div
+              class="screenshot-thumbnail active border-2 border-transparent rounded overflow-hidden cursor-pointer"
+              data-image="https://readdy.ai/api/search-image?query=Modern%2520restaurant%2520inventory%2520management%2520interface%2520on%2520tablet%2520screen%2520with%2520clean%2520design.%2520Shows%2520product%2520categories%252C%2520stock%2520levels%252C%2520and%2520order%2520status.%2520Blue%2520and%2520white%2520color%2520scheme%2520with%2520gold%2520accents.%2520Professional%2520high-end%2520software%2520interface%2520with%2520clear%2520typography%2520and%2520intuitive%2520layout.%2520Visible%2520inventory%2520metrics%2520and%2520supplier%2520information.&width=1200&height=800&seq=11&orientation=landscape"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=Modern%2520restaurant%2520inventory%2520management%2520interface%2520on%2520tablet%2520screen%2520with%2520clean%2520design.%2520Shows%2520product%2520categories%252C%2520stock%2520levels%252C%2520and%2520order%2520status.%2520Blue%2520and%2520white%2520color%2520scheme%2520with%2520gold%2520accents.%2520Professional%2520high-end%2520software%2520interface%2520with%2520clear%2520typography%2520and%2520intuitive%2520layout.%2520Visible%2520inventory%2520metrics%2520and%2520supplier%2520information.&width=120&height=80&seq=11&orientation=landscape"
+                alt="Inventory Dashboard"
+                class="w-24 h-16 object-cover"
+              />
+            </div>
+            <div
+              class="screenshot-thumbnail border-2 border-transparent rounded overflow-hidden cursor-pointer"
+              data-image="https://readdy.ai/api/search-image?query=Restaurant%2520inventory%2520supplier%2520management%2520screen%2520with%2520supplier%2520list%2520and%2520details.%2520Shows%2520contact%2520information%252C%2520order%2520history%252C%2520and%2520performance%2520metrics.%2520Clean%2520modern%2520interface%2520with%2520blue%2520and%2520white%2520design.%2520Professional%2520software%2520UI%2520with%2520clear%2520sections%2520and%2520intuitive%2520controls.&width=1200&height=800&seq=12&orientation=landscape"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=Restaurant%2520inventory%2520supplier%2520management%2520screen%2520with%2520supplier%2520list%2520and%2520details.%2520Shows%2520contact%2520information%252C%2520order%2520history%252C%2520and%2520performance%2520metrics.%2520Clean%2520modern%2520interface%2520with%2520blue%2520and%2520white%2520design.%2520Professional%2520software%2520UI%2520with%2520clear%2520sections%2520and%2520intuitive%2520controls.&width=120&height=80&seq=12&orientation=landscape"
+                alt="Supplier Management"
+                class="w-24 h-16 object-cover"
+              />
+            </div>
+            <div
+              class="screenshot-thumbnail border-2 border-transparent rounded overflow-hidden cursor-pointer"
+              data-image="https://readdy.ai/api/search-image?query=Restaurant%2520inventory%2520order%2520processing%2520screen%2520with%2520purchase%2520order%2520creation%252C%2520approval%2520workflow%252C%2520and%2520receiving%2520functionality.%2520Clean%2520modern%2520interface%2520with%2520blue%2520and%2520white%2520design.%2520Professional%2520software%2520UI%2520showing%2520order%2520details%252C%2520quantities%252C%2520and%2520pricing.%2520Clear%2520layout%2520with%2520product%2520list%2520and%2520total%2520calculation.&width=1200&height=800&seq=13&orientation=landscape"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=Restaurant%2520inventory%2520order%2520processing%2520screen%2520with%2520purchase%2520order%2520creation%252C%2520approval%2520workflow%252C%2520and%2520receiving%2520functionality.%2520Clean%2520modern%2520interface%2520with%2520blue%2520and%2520white%2520design.%2520Professional%2520software%2520UI%2520showing%2520order%2520details%252C%2520quantities%252C%2520and%2520pricing.%2520Clear%2520layout%2520with%2520product%2520list%2520and%2520total%2520calculation.&width=120&height=80&seq=13&orientation=landscape"
+                alt="Order Processing"
+                class="w-24 h-16 object-cover"
+              />
+            </div>
+            <div
+              class="screenshot-thumbnail border-2 border-transparent rounded overflow-hidden cursor-pointer"
+              data-image="https://readdy.ai/api/search-image?query=Restaurant%2520inventory%2520analytics%2520dashboard%2520showing%2520stock%2520data%252C%2520usage%2520metrics%252C%2520and%2520charts.%2520Clean%2520modern%2520interface%2520with%2520blue%2520and%2520white%2520design.%2520Professional%2520business%2520intelligence%2520UI%2520with%2520inventory%2520turnover%252C%2520waste%2520tracking%252C%2520and%2520cost%2520trends.%2520Clear%2520data%2520visualization%2520with%2520graphs%2520and%2520KPI%2520cards.&width=1200&height=800&seq=14&orientation=landscape"
+            >
+              <img
+                src="https://readdy.ai/api/search-image?query=Restaurant%2520inventory%2520analytics%2520dashboard%2520showing%2520stock%2520data%252C%2520usage%2520metrics%252C%2520and%2520charts.%2520Clean%2520modern%2520interface%2520with%2520blue%2520and%2520white%2520design.%2520Professional%2520business%2520intelligence%2520UI%2520with%2520inventory%2520turnover%252C%2520waste%2520tracking%252C%2520and%2520cost%2520trends.%2520Clear%2520data%2520visualization%2520with%2520graphs%2520and%2520KPI%2520cards.&width=120&height=80&seq=14&orientation=landscape"
+                alt="Analytics Dashboard"
+                class="w-24 h-16 object-cover"
+              />
+            </div>
+          </div>
+          <!-- Feature Explanations -->
+          <div class="bg-white p-6 rounded-lg shadow-md max-w-4xl w-full">
+            <div class="feature-explanation" id="explanation-1">
+              <h3 class="text-xl font-semibold text-primary mb-2">
+                Comprehensive Inventory Dashboard
+              </h3>
+              <p class="text-gray-600">
+                Our intuitive dashboard provides a complete overview of your
+                inventory status. Quickly identify low stock items, track
+                pending orders, and monitor key metrics with color-coded visual
+                indicators for immediate attention areas.
+              </p>
+            </div>
+            <div class="feature-explanation hidden" id="explanation-2">
+              <h3 class="text-xl font-semibold text-primary mb-2">
+                Supplier Relationship Management
+              </h3>
+              <p class="text-gray-600">
+                Maintain detailed supplier profiles with performance metrics,
+                contact information, and order history. Compare pricing across
+                suppliers, track delivery performance, and manage relationships
+                to ensure you're getting the best value.
+              </p>
+            </div>
+            <div class="feature-explanation hidden" id="explanation-3">
+              <h3 class="text-xl font-semibold text-primary mb-2">
+                Automated Purchase Orders
+              </h3>
+              <p class="text-gray-600">
+                Create, approve, and send purchase orders with just a few
+                clicks. Set up automatic reordering based on inventory
+                thresholds, lead times, and usage patterns to ensure you never
+                run out of essential items.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Benefits Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row items-start gap-12">
+          <!-- Left Column: Benefits List -->
+          <div class="w-full lg:w-1/2">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-8">
+              Why Restaurants Choose AlgoriInventory
+            </h2>
+            <div class="space-y-6">
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-blue-50 rounded-full mr-4"
+                >
+                  <i class="ri-money-dollar-circle-line ri-lg text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-primary mb-2">
+                    Reduce Food Waste
+                  </h3>
+                  <p class="text-gray-600">
+                    Cut food waste by up to 30% with precise inventory tracking,
+                    expiration date monitoring, and usage analytics that
+                    optimize ordering quantities.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-blue-50 rounded-full mr-4"
+                >
+                  <i class="ri-time-line ri-lg text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-primary mb-2">
+                    Save Time
+                  </h3>
+                  <p class="text-gray-600">
+                    Reduce inventory management time by 75% with automated
+                    counting, ordering, and receiving processes that free up
+                    your staff for customer service.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-blue-50 rounded-full mr-4"
+                >
+                  <i class="ri-error-warning-line ri-lg text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-primary mb-2">
+                    Prevent Stockouts
+                  </h3>
+                  <p class="text-gray-600">
+                    Eliminate 95% of stockout situations with proactive alerts,
+                    automated reordering, and accurate demand forecasting based
+                    on historical data.
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-blue-50 rounded-full mr-4"
+                >
+                  <i class="ri-bar-chart-grouped-line ri-lg text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="text-xl font-semibold text-primary mb-2">
+                    Increase Profits
+                  </h3>
+                  <p class="text-gray-600">
+                    Our customers report an average 12% increase in
+                    profitability through reduced waste, optimized ordering, and
+                    better supplier negotiations.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Right Column: Stats and Testimonial -->
+          <div class="w-full lg:w-1/2">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-2 gap-6 mb-10">
+              <div class="bg-gray-50 p-6 rounded-lg">
+                <div class="text-4xl font-bold text-primary mb-2">30%</div>
+                <p class="text-gray-600">
+                  Average reduction in food waste after implementation
+                </p>
+              </div>
+              <div class="bg-gray-50 p-6 rounded-lg">
+                <div class="text-4xl font-bold text-primary mb-2">75%</div>
+                <p class="text-gray-600">
+                  Time saved on inventory management tasks
+                </p>
+              </div>
+              <div class="bg-gray-50 p-6 rounded-lg">
+                <div class="text-4xl font-bold text-primary mb-2">12%</div>
+                <p class="text-gray-600">Average increase in profit margins</p>
+              </div>
+              <div class="bg-gray-50 p-6 rounded-lg">
+                <div class="text-4xl font-bold text-primary mb-2">2,800+</div>
+                <p class="text-gray-600">
+                  Restaurants using AlgoriInventory worldwide
+                </p>
+              </div>
+            </div>
+            <!-- Testimonial -->
+            <div
+              class="bg-white border border-gray-200 p-8 rounded-lg shadow-md"
+            >
+              <div class="flex items-center mb-6">
+                <div class="text-secondary">
+                  <i class="ri-star-fill ri-lg"></i>
+                  <i class="ri-star-fill ri-lg"></i>
+                  <i class="ri-star-fill ri-lg"></i>
+                  <i class="ri-star-fill ri-lg"></i>
+                  <i class="ri-star-fill ri-lg"></i>
+                </div>
+              </div>
+              <p class="text-gray-600 italic mb-6">
+                "AlgoriInventory has transformed how we manage our restaurant's
+                stock. Before, we were constantly running out of ingredients or
+                throwing away expired items. Now, we have perfect visibility
+                into our inventory, automatic reordering, and detailed analytics
+                that have helped us reduce waste by 35% and increase our profit
+                margins significantly."
+              </p>
+              <div class="flex items-center">
+                <img
+                  src="https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520male%2520restaurant%2520owner%2520or%2520chef%2520in%2520chef%2520jacket.%2520Neutral%2520background.%2520Confident%2520expression.%2520High-quality%2520portrait%2520photograph.&width=60&height=60&seq=15&orientation=squarish"
+                  alt="Restaurant Owner"
+                  class="w-12 h-12 rounded-full object-cover mr-4"
+                />
+                <div>
+                  <h4 class="font-semibold text-primary">Daniel Martinez</h4>
+                  <p class="text-sm text-gray-500">
+                    Executive Chef, Harbor Grill Restaurant
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Integration Capabilities -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Seamless Integration Capabilities
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            AlgoriInventory works with your existing systems and third-party
+            services to create a unified restaurant management ecosystem.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- POS Integration -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-4"
+            >
+              <i class="ri-shopping-cart-2-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">POS Systems</h3>
+            <p class="text-gray-600 mb-4">
+              Integrate with your point-of-sale system to automatically update
+              inventory when items are sold.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-shopping-cart-2-line ri-lg mr-1"></i>
+                <span class="text-sm">AlgoriPOS</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-shopping-cart-2-line ri-lg mr-1"></i>
+                <span class="text-sm">Toast</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-shopping-cart-2-line ri-lg mr-1"></i>
+                <span class="text-sm">Square</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-shopping-cart-2-line ri-lg mr-1"></i>
+                <span class="text-sm">Clover</span>
+              </div>
+            </div>
+          </div>
+          <!-- Supplier Portals -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-4"
+            >
+              <i class="ri-truck-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Supplier Portals
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Connect directly with supplier ordering systems for seamless
+              purchase order submission.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-store-2-line ri-lg mr-1"></i>
+                <span class="text-sm">US Foods</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-store-2-line ri-lg mr-1"></i>
+                <span class="text-sm">Sysco</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-store-2-line ri-lg mr-1"></i>
+                <span class="text-sm">Gordon Food Service</span>
+              </div>
+            </div>
+          </div>
+          <!-- Accounting Software -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-4"
+            >
+              <i class="ri-calculator-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Accounting Software
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Sync your inventory data with popular accounting platforms to
+              streamline financial management.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-file-list-3-line ri-lg mr-1"></i>
+                <span class="text-sm">QuickBooks</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-file-list-3-line ri-lg mr-1"></i>
+                <span class="text-sm">Xero</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-file-list-3-line ri-lg mr-1"></i>
+                <span class="text-sm">Sage</span>
+              </div>
+            </div>
+          </div>
+          <!-- Recipe Management -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-4"
+            >
+              <i class="ri-book-2-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Recipe Management
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Connect with recipe management systems to automatically update
+              inventory based on menu production.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-restaurant-line ri-lg mr-1"></i>
+                <span class="text-sm">MenuDrive</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-restaurant-line ri-lg mr-1"></i>
+                <span class="text-sm">Recipe Cost Calculator</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-restaurant-line ri-lg mr-1"></i>
+                <span class="text-sm">CookBook</span>
+              </div>
+            </div>
+          </div>
+          <!-- Analytics Platforms -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-4"
+            >
+              <i class="ri-line-chart-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Analytics Platforms
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Export data to advanced analytics platforms for deeper insights
+              and custom reporting.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-bar-chart-box-line ri-lg mr-1"></i>
+                <span class="text-sm">AlgoriAnalytics</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-bar-chart-box-line ri-lg mr-1"></i>
+                <span class="text-sm">Tableau</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-bar-chart-box-line ri-lg mr-1"></i>
+                <span class="text-sm">Power BI</span>
+              </div>
+            </div>
+          </div>
+          <!-- Hardware Compatibility -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <div
+              class="w-12 h-12 flex items-center justify-center bg-blue-50 rounded-full mb-4"
+            >
+              <i class="ri-device-line ri-lg text-primary"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-primary mb-3">
+              Hardware Compatibility
+            </h3>
+            <p class="text-gray-600 mb-4">
+              Works with a wide range of inventory hardware to fit your
+              restaurant's needs.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-scan-line ri-lg mr-1"></i>
+                <span class="text-sm">Barcode Scanners</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-tablet-line ri-lg mr-1"></i>
+                <span class="text-sm">Tablets</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-scales-line ri-lg mr-1"></i>
+                <span class="text-sm">Digital Scales</span>
+              </div>
+              <div class="flex items-center px-3 py-1 bg-gray-100 rounded-full">
+                <i class="ri-printer-line ri-lg mr-1"></i>
+                <span class="text-sm">Label Printers</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Performance Analytics -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Data-Driven Inventory Insights
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Make informed inventory decisions with our comprehensive analytics
+            dashboard.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <!-- Chart 1: Inventory Turnover -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-primary mb-4">
+              Inventory Turnover Rate
+            </h3>
+            <div id="turnover-chart" class="w-full h-80"></div>
+          </div>
+          <!-- Chart 2: Food Cost Analysis -->
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-semibold text-primary mb-4">
+              Food Cost Analysis
+            </h3>
+            <div id="cost-chart" class="w-full h-80"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            Simple, Transparent Pricing
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Choose the plan that works best for your restaurant's inventory
+            needs and scale as you grow.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Basic Plan -->
+          <div
+            class="bg-white p-8 rounded-lg shadow-md border border-gray-100 flex flex-col h-full"
+          >
+            <div class="mb-6">
+              <h3 class="text-xl font-semibold text-primary mb-2">
+                Basic Inventory
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Perfect for small cafes and quick-service restaurants
+              </p>
+              <div class="flex items-end mb-4">
+                <span class="text-4xl font-bold text-primary">$59</span>
+                <span class="text-gray-500 ml-2">/month</span>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-8 flex-grow">
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Up to 500 inventory items</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Basic inventory tracking</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Simple supplier management</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Low stock alerts</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Email support</span>
+              </li>
+            </ul>
+            <a
+              href="#"
+              class="bg-primary text-white px-6 py-3 !rounded-button font-medium text-center hover:bg-secondary transition-colors whitespace-nowrap"
+              >Get Started</a
+            >
+          </div>
+          <!-- Professional Plan -->
+          <div
+            class="bg-white p-8 rounded-lg shadow-lg border-2 border-secondary flex flex-col h-full relative"
+          >
+            <div
+              class="absolute top-0 right-0 bg-secondary text-white px-4 py-1 text-sm font-medium !rounded-tr-lg !rounded-bl-lg"
+            >
+              Most Popular
+            </div>
+            <div class="mb-6">
+              <h3 class="text-xl font-semibold text-primary mb-2">
+                Professional Inventory
+              </h3>
+              <p class="text-gray-600 mb-4">
+                Ideal for full-service restaurants
+              </p>
+              <div class="flex items-end mb-4">
+                <span class="text-4xl font-bold text-primary">$129</span>
+                <span class="text-gray-500 ml-2">/month</span>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-8 flex-grow">
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Unlimited inventory items</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Advanced inventory tracking</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600"
+                  >Comprehensive supplier management</span
+                >
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Automated purchase orders</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Recipe management</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Inventory analytics</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Priority support</span>
+              </li>
+            </ul>
+            <a
+              href="#"
+              class="bg-secondary text-white px-6 py-3 !rounded-button font-medium text-center hover:bg-primary transition-colors whitespace-nowrap"
+              >Get Started</a
+            >
+          </div>
+          <!-- Enterprise Plan -->
+          <div
+            class="bg-white p-8 rounded-lg shadow-md border border-gray-100 flex flex-col h-full"
+          >
+            <div class="mb-6">
+              <h3 class="text-xl font-semibold text-primary mb-2">
+                Enterprise Inventory
+              </h3>
+              <p class="text-gray-600 mb-4">For restaurant groups and chains</p>
+              <div class="flex items-end mb-4">
+                <span class="text-4xl font-bold text-primary">$249</span>
+                <span class="text-gray-500 ml-2">/month</span>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-8 flex-grow">
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Everything in Professional</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Multi-location management</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Advanced forecasting</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Custom integrations</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Enterprise reporting</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">API access</span>
+              </li>
+              <li class="flex items-start">
+                <div
+                  class="w-5 h-5 flex items-center justify-center text-secondary mt-1 mr-2"
+                >
+                  <i class="ri-check-line"></i>
+                </div>
+                <span class="text-gray-600">Dedicated account manager</span>
+              </li>
+            </ul>
+            <a
+              href="#"
+              class="bg-primary text-white px-6 py-3 !rounded-button font-medium text-center hover:bg-secondary transition-colors whitespace-nowrap"
+              >Contact Sales</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Demo Request Section -->
+    <section id="demo" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+          <div class="w-full lg:w-1/2">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+              See AlgoriInventory in Action
+            </h2>
+            <p class="text-lg text-gray-600 mb-8">
+              Schedule a personalized demo with our team to see how
+              AlgoriInventory can transform your restaurant's inventory
+              management.
+            </p>
+            <div class="space-y-6 mb-8">
+              <div class="flex items-start">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-blue-50 rounded-full mr-4"
+                >
+                  <i class="ri-presentation-line text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-primary mb-1">
+                    Personalized Demonstration
+                  </h3>
+                  <p class="text-gray-600">
+                    See features relevant to your specific restaurant type and
+                    inventory needs
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-blue-50 rounded-full mr-4"
+                >
+                  <i class="ri-question-answer-line text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-primary mb-1">Q&A Session</h3>
+                  <p class="text-gray-600">
+                    Get all your questions answered by our inventory specialists
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div
+                  class="w-10 h-10 flex items-center justify-center bg-blue-50 rounded-full mr-4"
+                >
+                  <i class="ri-file-list-3-line text-primary"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-primary mb-1">
+                    Custom Implementation Plan
+                  </h3>
+                  <p class="text-gray-600">
+                    Receive a tailored roadmap for integrating AlgoriInventory
+                    into your operations
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="p-6 bg-gray-50 rounded-lg">
+              <h3 class="font-semibold text-primary mb-4">
+                Implementation Timeline
+              </h3>
+              <div class="space-y-4">
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full mr-3 text-sm"
+                  >
+                    1
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-800">
+                      Demo & Consultation
+                    </h4>
+                    <p class="text-sm text-gray-600">1-2 days</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full mr-3 text-sm"
+                  >
+                    2
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-800">
+                      System Setup & Configuration
+                    </h4>
+                    <p class="text-sm text-gray-600">2-3 days</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full mr-3 text-sm"
+                  >
+                    3
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-800">
+                      Initial Inventory Upload
+                    </h4>
+                    <p class="text-sm text-gray-600">1-2 days</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full mr-3 text-sm"
+                  >
+                    4
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-800">Staff Training</h4>
+                    <p class="text-sm text-gray-600">1 day</p>
+                  </div>
+                </div>
+                <div class="flex items-center">
+                  <div
+                    class="w-8 h-8 flex items-center justify-center bg-primary text-white rounded-full mr-3 text-sm"
+                  >
+                    5
+                  </div>
+                  <div>
+                    <h4 class="font-medium text-gray-800">Go Live & Support</h4>
+                    <p class="text-sm text-gray-600">Ongoing</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="bg-white p-8 rounded-lg shadow-md border border-gray-200"
+            >
+              <h3 class="text-2xl font-semibold text-primary mb-6">
+                Request a Demo
+              </h3>
+              <form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label for="first-name" class="block text-gray-700 mb-2"
+                      >First Name</label
+                    >
+                    <input
+                      type="text"
+                      id="first-name"
+                      class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      placeholder="John"
+                    />
+                  </div>
+                  <div>
+                    <label for="last-name" class="block text-gray-700 mb-2"
+                      >Last Name</label
+                    >
+                    <input
+                      type="text"
+                      id="last-name"
+                      class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                      placeholder="Smith"
+                    />
+                  </div>
+                </div>
+                <div class="mb-6">
+                  <label for="email" class="block text-gray-700 mb-2"
+                    >Business Email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="john@yourrestaurant.com"
+                  />
+                </div>
+                <div class="mb-6">
+                  <label for="phone" class="block text-gray-700 mb-2"
+                    >Phone Number</label
+                  >
+                  <input
+                    type="tel"
+                    id="phone"
+                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="(555) 123-4567"
+                  />
+                </div>
+                <div class="mb-6">
+                  <label for="restaurant-name" class="block text-gray-700 mb-2"
+                    >Restaurant Name</label
+                  >
+                  <input
+                    type="text"
+                    id="restaurant-name"
+                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="Your Restaurant"
+                  />
+                </div>
+                <div class="mb-6">
+                  <label class="block text-gray-700 mb-2"
+                    >Restaurant Type</label
+                  >
+                  <div class="flex flex-wrap gap-4">
+                    <label class="flex items-center">
+                      <input type="checkbox" class="custom-checkbox mr-2" />
+                      <span class="text-gray-600">Quick Service</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input type="checkbox" class="custom-checkbox mr-2" />
+                      <span class="text-gray-600">Full Service</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input type="checkbox" class="custom-checkbox mr-2" />
+                      <span class="text-gray-600">Cafe</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input type="checkbox" class="custom-checkbox mr-2" />
+                      <span class="text-gray-600">Bar/Pub</span>
+                    </label>
+                    <label class="flex items-center">
+                      <input type="checkbox" class="custom-checkbox mr-2" />
+                      <span class="text-gray-600">Other</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="mb-8">
+                  <label for="message" class="block text-gray-700 mb-2"
+                    >Additional Information</label
+                  >
+                  <textarea
+                    id="message"
+                    rows="4"
+                    class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                    placeholder="Tell us about your specific inventory needs..."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="w-full bg-primary text-white px-6 py-3 !rounded-button font-medium hover:bg-secondary transition-colors whitespace-nowrap"
+                >
+                  Schedule My Demo
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">
+            What Our Customers Say
+          </h2>
+          <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+            Join thousands of satisfied restaurant owners who have transformed
+            their inventory management with AlgoriInventory.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Testimonial 1 -->
+          <div class="bg-white p-8 rounded-lg shadow-md">
+            <div class="flex items-center mb-6">
+              <div class="text-secondary">
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 italic mb-6">
+              "AlgoriInventory has cut our food waste by 40%. The automated
+              ordering system ensures we never run out of key ingredients, and
+              the analytics help us optimize our purchasing. It's paid for
+              itself many times over in just six months."
+            </p>
+            <div class="flex items-center">
+              <img
+                src="https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520female%2520restaurant%2520manager%2520in%2520business%2520casual%2520attire.%2520Neutral%2520background.%2520Confident%2520expression.%2520High-quality%2520portrait%2520photograph.&width=60&height=60&seq=16&orientation=squarish"
+                alt="Restaurant Manager"
+                class="w-12 h-12 rounded-full object-cover mr-4"
+              />
+              <div>
+                <h4 class="font-semibold text-primary">Rebecca Thompson</h4>
+                <p class="text-sm text-gray-500">
+                  Operations Manager, Seaside Bistro
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial 2 -->
+          <div class="bg-white p-8 rounded-lg shadow-md">
+            <div class="flex items-center mb-6">
+              <div class="text-secondary">
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 italic mb-6">
+              "As a multi-location restaurant group, AlgoriInventory gives us
+              complete visibility across all our venues. The centralized
+              reporting helps us identify cost-saving opportunities, and the
+              integration with our POS system is seamless."
+            </p>
+            <div class="flex items-center">
+              <img
+                src="https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520male%2520restaurant%2520executive%2520in%2520business%2520attire.%2520Neutral%2520background.%2520Confident%2520expression.%2520High-quality%2520portrait%2520photograph.&width=60&height=60&seq=17&orientation=squarish"
+                alt="Restaurant Executive"
+                class="w-12 h-12 rounded-full object-cover mr-4"
+              />
+              <div>
+                <h4 class="font-semibold text-primary">Jonathan Parker</h4>
+                <p class="text-sm text-gray-500">
+                  Director of Operations, Urban Dining Group
+                </p>
+              </div>
+            </div>
+          </div>
+          <!-- Testimonial 3 -->
+          <div class="bg-white p-8 rounded-lg shadow-md">
+            <div class="flex items-center mb-6">
+              <div class="text-secondary">
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+                <i class="ri-star-fill ri-lg"></i>
+              </div>
+            </div>
+            <p class="text-gray-600 italic mb-6">
+              "The recipe management feature in AlgoriInventory has been a
+              game-changer for our kitchen. It automatically updates our
+              inventory when dishes are prepared, giving us accurate real-time
+              stock levels and helping us control costs."
+            </p>
+            <div class="flex items-center">
+              <img
+                src="https://readdy.ai/api/search-image?query=Professional%2520headshot%2520of%2520female%2520chef%2520in%2520chef%2520jacket.%2520Neutral%2520background.%2520Confident%2520expression.%2520High-quality%2520portrait%2520photograph.&width=60&height=60&seq=18&orientation=squarish"
+                alt="Restaurant Chef"
+                class="w-12 h-12 rounded-full object-cover mr-4"
+              />
+              <div>
+                <h4 class="font-semibold text-primary">Olivia Sanchez</h4>
+                <p class="text-sm text-gray-500">
+                  Executive Chef, Harvest Table
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary mb-6">
+          Ready to Transform Your Inventory Management?
+        </h2>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+          Join thousands of successful restaurants already using AlgoriInventory
+          to reduce waste, control costs, and boost profitability.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4"
+        >
+          <a
+            href="#demo"
+            class="bg-primary text-white px-8 py-3 !rounded-button font-medium cta-button text-center whitespace-nowrap"
+            >Request Demo</a
+          >
+          <a
+            href="#pricing"
+            class="border-2 border-primary text-primary px-8 py-3 !rounded-button font-medium cta-button-outline text-center whitespace-nowrap"
+            >View Pricing</a
+          >
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <body class="bg-white"></body>
+<div id="footer"></div>
+<script>
+  fetch('/global/footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer').innerHTML = data;
+    })
+    .catch(error => console.error('Error loading footer:', error));
+</script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu toggle
+        const menuButton = document.querySelector(".md\\:hidden");
+        const mobileMenu = document.querySelector("nav");
+        if (menuButton && mobileMenu) {
+          menuButton.addEventListener("click", function () {
+            mobileMenu.classList.toggle("hidden");
+            mobileMenu.classList.toggle("flex");
+            mobileMenu.classList.toggle("flex-col");
+            mobileMenu.classList.toggle("absolute");
+            mobileMenu.classList.toggle("top-16");
+            mobileMenu.classList.toggle("left-0");
+            mobileMenu.classList.toggle("right-0");
+            mobileMenu.classList.toggle("bg-white");
+            mobileMenu.classList.toggle("p-4");
+            mobileMenu.classList.toggle("shadow-md");
+            mobileMenu.classList.toggle("z-50");
+          });
+        }
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Screenshot gallery functionality
+        const mainScreenshot = document.getElementById("main-screenshot");
+        const thumbnails = document.querySelectorAll(".screenshot-thumbnail");
+        thumbnails.forEach((thumbnail) => {
+          thumbnail.addEventListener("click", function () {
+            // Update main image
+            mainScreenshot.src = this.dataset.image;
+            // Update active state
+            thumbnails.forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+          });
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Feature annotation functionality
+        const annotations = [
+          document.getElementById("annotation-1"),
+          document.getElementById("annotation-2"),
+          document.getElementById("annotation-3"),
+        ];
+        const explanations = [
+          document.getElementById("explanation-1"),
+          document.getElementById("explanation-2"),
+          document.getElementById("explanation-3"),
+        ];
+        annotations.forEach((annotation, index) => {
+          annotation.addEventListener("click", function () {
+            // Hide all explanations
+            explanations.forEach((exp) => exp.classList.add("hidden"));
+            // Show the clicked one
+            explanations[index].classList.remove("hidden");
+            // Highlight the clicked annotation
+            annotations.forEach((a) => a.classList.remove("bg-secondary"));
+            annotation.classList.add("bg-secondary");
+          });
+        });
+      });
+
+      document.addEventListener("DOMContentLoaded", function () {
+        // Initialize Turnover Chart
+        const turnoverChart = echarts.init(document.getElementById("turnover-chart"));
+        const turnoverOption = {
+          animation: false,
+          tooltip: {
+            trigger: "axis",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            borderColor: "#ddd",
+            borderWidth: 1,
+            textStyle: {
+              color: "#1f2937",
+            },
+          },
+          legend: {
+            data: ["Current Quarter", "Previous Quarter"],
+            textStyle: {
+              color: "#1f2937",
+            },
+          },
+          grid: {
+            left: "3%",
+            right: "4%",
+            bottom: "3%",
+            containLabel: true,
+          },
+          xAxis: {
+            type: "category",
+            boundaryGap: false,
+            data: ["Produce", "Meat", "Seafood", "Dairy", "Dry Goods", "Beverages"],
+            axisLine: {
+              lineStyle: {
+                color: "#ddd",
+              },
+            },
+            axisLabel: {
+              color: "#1f2937",
+            },
+          },
+          yAxis: {
+            type: "value",
+            axisLine: {
+              lineStyle: {
+                color: "#ddd",
+              },
+            },
+            axisLabel: {
+              color: "#1f2937",
+              formatter: "{value} times",
+            },
+            splitLine: {
+              lineStyle: {
+                color: "#eee",
+              },
+            },
+          },
+          series: [
+            {
+              name: "Current Quarter",
+              type: "line",
+              smooth: true,
+              lineStyle: {
+                width: 3,
+                color: "rgba(87, 181, 231, 1)",
+              },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: "rgba(87, 181, 231, 0.2)",
+                  },
+                  {
+                    offset: 1,
+                    color: "rgba(87, 181, 231, 0.0)",
+                  },
+                ]),
+              },
+              emphasis: {
+                focus: "series",
+              },
+              data: [12, 8, 15, 14, 7, 10],
+            },
+            {
+              name: "Previous Quarter",
+              type: "line",
+              smooth: true,
+              lineStyle: {
+                width: 3,
+                color: "rgba(141, 211, 199, 1)",
+              },
+              areaStyle: {
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: "rgba(141, 211, 199, 0.2)",
+                  },
+                  {
+                    offset: 1,
+                    color: "rgba(141, 211, 199, 0.0)",
+                  },
+                ]),
+              },
+              emphasis: {
+                focus: "series",
+              },
+              data: [10, 6, 12, 11, 5, 8],
+            },
+          ],
+        };
+        turnoverChart.setOption(turnoverOption);
+
+        // Initialize Cost Chart
+        const costChart = echarts.init(document.getElementById("cost-chart"));
+        const costOption = {
+          animation: false,
+          tooltip: {
+            trigger: "item",
+            backgroundColor: "rgba(255, 255, 255, 0.8)",
+            borderColor: "#ddd",
+            borderWidth: 1,
+            textStyle: {
+              color: "#1f2937",
+            },
+          },
+          legend: {
+            orient: "vertical",
+            right: 10,
+            top: "center",
+            textStyle: {
+              color: "#1f2937",
+            },
+          },
+          series: [
+            {
+              name: "Food Cost",
+              type: "pie",
+              radius: ["40%", "70%"],
+              avoidLabelOverlap: false,
+              itemStyle: {
+                borderRadius: 8,
+                borderColor: "#fff",
+                borderWidth: 2,
+              },
+              label: {
+                show: false,
+                position: "center",
+              },
+              emphasis: {
+                label: {
+                  show: true,
+                  fontSize: "16",
+                  fontWeight: "bold",
+                  color: "#1f2937",
+                },
+              },
+              labelLine: {
+                show: false,
+              },
+              data: [
+                { value: 28, name: "Produce" },
+                { value: 35, name: "Meat" },
+                { value: 18, name: "Seafood" },
+                { value: 12, name: "Dairy" },
+                { value: 7, name: "Dry Goods" },
+              ],
+              color: [
+                "rgba(87, 181, 231, 1)",
+                "rgba(141, 211, 199, 1)",
+                "rgba(251, 191, 114, 1)",
+                "rgba(252, 141, 98, 1)",
+                "rgba(179, 179, 179, 1)",
+              ],
+            },
+          ],
+        };
+        costChart.setOption(costOption);
+
+        // Resize charts when window size changes
+        window.addEventListener("resize", function () {
+          turnoverChart.resize();
+          costChart.resize();
+        });
+      });
+    </script>
+  </body>
+</html>
